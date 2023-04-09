@@ -1,0 +1,250 @@
+:root {
+    --color1: rgb(134, 17, 141)
+}
+
+html, body {
+    height: 100%;
+}
+
+.wrapper {
+    position: relative;
+    min-height: 100%;
+}
+
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+/* header, footer ==============================*/
+
+
+header, footer, .my-color-gradient {
+    background: #ca11ab;
+    background: -moz-linear-gradient(left,  #ca11ab 0%, #6b1182 100%);
+    background: -webkit-linear-gradient(left,  #ca11ab 0%,#6b1182 100%);
+    background: linear-gradient(to right,  #ca11ab 0%,#6b1182 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ca11ab', endColorstr='#6b1182',GradientType=1 );
+    padding: 20px 0;
+}
+
+
+/* header ======================================*/
+
+
+/* #menu-button {
+    cursor: pointer;
+    font-size: 30px;
+} */
+
+.my-menu-btn {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: white;
+}
+
+.my-menu-btn:hover {
+    background-color: #ca11ab;
+    border: white 2px solid
+}
+
+
+/* Карточки товаров ======================================*/
+
+.my-a-card {
+    text-decoration: none;
+}
+
+.my-card {
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.my-card-body {
+    height: 150px;
+}
+
+/* Пагинация ======================================*/
+
+
+.my-bg-color1 {
+    background-color: var(--color1);
+}
+
+.my-pagination {
+    color: black;
+}
+
+
+/* Корзина ======================================*/
+.img-in-cart {
+    height: 6rem;
+}
+
+/* main ======================================*/
+
+main {
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+.my-img {
+    width: 100%;
+}
+
+/* Боковая панель ======================================*/
+
+.my-nodecor {
+    text-decoration: none;
+    color: black;
+}
+
+/* footer ======================================*/
+
+
+/* ======================================*/
+/* ======================================*/
+
+#menu-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+#menu-img:hover {
+    background-color:  rgb(107, 31, 88);
+    transition: 0.2s;
+}
+
+.my-logo {
+    line-height: 40px;
+}
+
+#logo {
+    font-size: calc(10px + 2vw);
+    text-decoration: none;
+    color: inherit;
+}
+
+#search-form {
+    margin: auto 0;
+}
+
+.login-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+#login-img {
+    width: 50px;
+    height: 50px;
+}
+
+#cart-button {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+#cart-img {
+    width: 50px;
+    height: 50px;
+}
+
+/* main ===========================================*/
+
+
+
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    display: none;
+    width: 100vw;
+}
+
+#sidebar-menu {
+    background-color: white;
+    height: 100vh;
+    width: 300px;
+}
+
+#sidebar-menu ul {
+    list-style-type: none;
+}
+
+#sidebar-menu ul a {
+    text-decoration: none;
+    line-height: 3rem;
+    color: black;
+}
+
+#sidebar-empty {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100%;
+}
+
+#cross {
+    font-size: 2rem;
+    padding: 10px 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+#cross:hover {
+    cursor: pointer;
+}
+
+#main-content {
+    width: 75%;
+    margin: auto;
+    text-align: center;
+}
+
+.ak-product {
+    /* display: inline-block; */
+    width: 180px;
+    /* height: 300px; */
+    /* margin: 20px; */
+    border: 2px solid black;
+    border-radius: 30px;
+}
+
+.product-img {
+    height: 180px;
+}
+
+/* .product a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.product p {
+    margin: 0;
+} */
+
+.in-cart-button {
+    background-color: rgb(209, 58, 171);
+    margin-left: 70px;
+    margin-top: 10px;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 15px;
+    border: 1px solid black;
+}

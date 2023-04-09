@@ -1,0 +1,27 @@
+{% extends 'store_app/base.html' %}
+{% load static %}
+
+{% block title %}
+<title>{{ title }}</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for p in page_obj %}
+        <div class="col-xl-3 col-md-6 col-sm-12 text-center mt-3 mb-3">
+            <a href="{% url 'product' product_id=p.pk %}" class="my-a-card">
+                <div class="card my-card" style="width: 18rem;">
+                    <img src="{{ p.photo.url }}" class="card-img-top" alt="{{ p.product_name }}">
+                    <div class="card-body my-card-body">
+                        <h5 class="card-title">{{ p.product_name }}</h5>
+                        <p class="card-text">{{ p.brand }}</p>
+                        <h5 class="card-text">{{ p.price }} р.</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

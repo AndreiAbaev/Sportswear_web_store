@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block title %}
+    {% endblock title %}
+    <link rel="stylesheet" href="{% static 'store_app/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'store_app/css/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="container">
+                <div class="row text-center text-white">
+                    <div class="col-1">
+                        <button class="btn btn-primary my-menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                    </div>
+                    <div class="col-5 my-logo">
+                        
+                        <a id="logo" href="{% url 'home' %}">
+                            SPORTSWEAR
+                        </a>
+                        
+                    </div>
+
+                
+
+                    <div class="col-3">
+                        {% if request.user.is_authenticated %}
+                            <a class="login-button" href="{% url 'account' user_id=user.pk %}">
+                                <i class="fa-solid fa-user menu-button"></i>
+                                <span>Профиль</span>
+                            </a>
+                        {% else %}
+                            <a class="login-button" href="{% url 'login' %}">
+                                <i class="fa-solid fa-user menu-button"></i>
+                                <span>Войти</span>
+                            </a>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-3">
+                        
+                            <a id="cart-button" href="{% url 'product_cart' %}" class="position-relative">
+                                <i class="fa-solid fa-cart-shopping menu-button"></i>
+                                <span>Корзина</span>
+    
+                                {% if num_products > 0 %}
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{ num_products }}
+                                    <span class="visually-hidden">Количество товаров в корзине</span>
+                                </span>
+                                {% endif %}
+    
+                            </a>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <!-- <aside id="sidebar">
+                <div id="sidebar-menu">
+                    <ul>
+                        {% for c in categories %}
+                        <li><a href="{{ c.get_absolute_url }}">{{ c.category_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="sidebar-empty">
+                    <button id="cross">&#x2716;</button>
+                </div>
+            </aside> -->
+
+            <!-- <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                Ссылка с помощью атрибута href
+            </a>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                Кнопка с атрибутом data-bs-target
+            </button> -->
+            
+            <!-- Боковая панель -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Категории</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="list-group list-group-flush">
+                        {% for c in categories %}
+                        <li class="list-group-item"><a href="{{ c.get_absolute_url }}" class="my-nodecor">{{ c.category_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+
+
+
+            {% block content %}
+            {% endblock content %}
+
+            <!-- Пагинация -->
+            {% if page_obj.has_other_pages %}
+            <nav>
+                <ul class="pagination pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a href="?page={{ page_obj.previous_page_number }}" class="page-link my-pagination">Предыдущая</a>
+                        </li>
+                    {% endif %}
+
+                    {% for p in page_obj.paginator.page_range %}
+                        {% if page_obj.number == p %}
+                            <li class="page-item active" aria-current="page">
+                                <span class="page-link my-pagination">{{ p }}</span>
+                            </li>
+                        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                            <li class="page-item">
+                                <a href="?page={{ p }}" class="page-link my-pagination">{{ p }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a href="?page={{ page_obj.next_page_number }}" class="page-link my-pagination">Следующая</a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+            {% endif %}
+
+
+                
+                
+                <!-- <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Следующая</a>
+                </li> -->
+                
+            
+
+
+        </main>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center">
+                        УЧЕБНЫЙ ПРОЕКТ ВЕБ-МАГАЗИН SPORTSWEAR
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+<script src="{% static 'store_app/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://kit.fontawesome.com/b5330e3fac.js" crossorigin="anonymous"></script>
+<script src="{% static 'store_app/js/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% extends 'store_app/base.html' %}
+
+{% block title %}
+<title>Корзина</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            {% if is_empty %}
+                <h3>Корзина пока пуста</h3>
+            {% else %}
+                <h3>Корзина</h3>
+                <ul class="list-group text-center">
+                    {% for p in cart %}
+                    <li class="list-group-item my-color-gradient text-white">
+                        <div class="row">
+                            <div class="col-4">{{ p.product }}</div>
+                            <div class="col-3"><img src="{{ p.product.photo.url }}" alt="{{ p.product }}" class="img-in-cart"></div>
+                            <div class="col-2">{{ p.quantity }} шт.</div>
+                            <div class="col-3">{{ p.total_price }} р.</div>
+                                                       
+                        </div>
+                        
+                    </li>
+                    {% endfor %}
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-9 text-end">Итого: {{ total }} р.</div>
+                            <div class="col-3">
+                                {% if request.user.is_authenticated %}
+                                <a class="btn btn-success" href="{% url 'order' user.id %}" role="button">Купить</a>
+                                {% else%}
+                                <a class="btn btn-success" href="{% url 'login' %}" role="button">Войти и купить</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

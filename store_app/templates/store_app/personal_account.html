@@ -1,0 +1,86 @@
+{% extends 'store_app/base.html' %}
+
+{% block title %}
+<title>{{ title }}</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <!-- <ul class="list-group">
+                <li class="list-group-item">{{ user.username }}</li>
+                <li class="list-group-item">{{ user.email }}</li>
+                <li class="list-group-item">{{ user.first_name }}</li>
+                <li class="list-group-item">{{ user.last_name }}</li>
+            </ul> -->
+
+            <table class="table">
+                <tbody>
+                  <tr>
+                    <td>Логин:</td>
+                    <td>{{ user.username }}</td>
+                  </tr>
+                  <tr>
+                    <td>Email:</td>
+                    <td>{{ user.email }}</td>
+                  </tr>
+                  <tr>
+                    <td>Имя:</td>
+                    <td>{{ user.first_name }}</td>
+                  </tr>
+                  <tr>
+                    <td>Фамилия:</td>
+                    <td>{{ user.last_name }}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            <p>
+                <a href="{% url 'logout' %}"><button type="button" class="btn btn-secondary">Выйти</button></a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% if orders %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center">История заказов</h3>
+            <ul class="list-group">
+                {% for order in orders %}
+                    <li class="list-group-item pt-5 pb-5">
+                        <span>{{ order.time_create }}</span>
+                        <div class="container">
+                            
+
+                                    <ul class="list-group text-center">
+                                        {% for ordr in product_order %}
+                                        {% if ordr.order == order %}
+                                        
+                                            <li class="list-group-item my-color-gradient text-white">
+                                                <div class="row">
+                                                    <div class="col-4">{{ ordr.product }}</div>
+                                                    <div class="col-4"><img src="{{ ordr.product.photo.url }}" alt="{{ ordr.product }}" class="img-in-cart"></div>
+                                                    <div class="col-4">{{ ordr.amount }} шт.</div>
+                                                </div>
+                                            </li>
+                                        
+                                        {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                           
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
